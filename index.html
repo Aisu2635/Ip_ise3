@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IP Ise 3</title>
+</head>
+<style>
+* {
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    color: rgb(238, 80, 15);
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(1, 0, 18);
+}
+img {
+    max-width: 40%;
+    max-height: auto;
+}
+button {
+    background-color: rgb(238, 80, 15);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+input {
+    padding: 10px;
+    font-size: 16px;
+    align-self: center;
+}
+h1 {
+    color: white;
+    background-image: linear-gradient(to bottom, rgb(238, 80, 15), rgb(226, 182, 50));
+    align-self: start;
+    border-style: dashed;
+    border-color: rgb(238, 80, 15);
+    border-width: 5px;
+}
+
+#imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zoom-in {
+    transform: scale(1.2);
+}
+
+.zoom-out {
+    transform: scale(0.8);
+}
+#Credits {
+    justify-content: center;
+    align-items: start;
+}
+</style>
+<body>
+    <h1>Image Upload Example</h1>
+    
+    <input type="file" id="imageUpload" accept="image/*">
+    <button onclick="uploadImage()">Upload</button>
+    
+    <div id="imageContainer"></div>
+    
+    <script>
+        function uploadImage() {
+            var fileInput = document.getElementById('imageUpload');
+            var imageContainer = document.getElementById('imageContainer');
+            
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                imageContainer.appendChild(img);
+            }
+            
+            reader.readAsDataURL(file);
+        }
+        var img = document.getElementById('imageContainer');
+        var isZoomed = false;
+        img.addEventListener('dblclick', function() {
+        if (!isZoomed) {
+            img.style.transform = 'scale(2.0)';
+            isZoomed = true;
+        } else {
+            img.style.transform = 'scale(1.0)';
+            isZoomed = false;
+        }
+    });
+    </script>
+
+    <footer id="Credits"></footer>
+        <h6>Credits:</h6>
+        <p>Created by 52-Te Comp A-Om Hinge</p>
+    </footer>
+</body>
+</html>
